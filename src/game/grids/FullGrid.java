@@ -110,27 +110,6 @@ public class FullGrid<T> implements Grid<T> {
     }
 
     public String toString() {
-        String result = "";
-        ArrayList<ArrayList<String>> resultGrid = new ArrayList<>();
-        int maxLength = 0;
-        for(int i = getYMin(); i <= getYMax(); i++) {
-            ArrayList<String> itemArray = new ArrayList<>();
-            for(int j = getXMin(); j <= getXMax(); j++) {
-                T item = this.get(j,i);
-                String str;
-                if(item==null) {str = "-";}
-                else {str = item.toString();}
-                maxLength = Math.max(maxLength,str.length());
-                itemArray.add(str);
-            }
-            resultGrid.add(itemArray);
-        }
-        for(ArrayList<String> array: resultGrid) {
-            for(int i = 0; i < array.size(); i++) {
-                array.set(i,String.format("%"+maxLength+"s",array.get(i)));
-            }
-            result += "[" + String.join(" ",array) + "]\n";
-        }
-        return result;
+        return this.toStr();
     }
 }
