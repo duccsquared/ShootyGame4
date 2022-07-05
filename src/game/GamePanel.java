@@ -1,6 +1,7 @@
 package game;
 
 import engine.skeleton.Panel;
+import game.screens.GameScreen;
 import game.screens.MainMenuScreen;
 
 import java.awt.*;
@@ -14,6 +15,7 @@ public class GamePanel extends Panel {
     @Override
     public void start() {
         this.registerScreen(new MainMenuScreen());
+        this.registerScreen(new GameScreen());
         this.setCurrentScreen(MainMenuScreen.id);
     }
 
