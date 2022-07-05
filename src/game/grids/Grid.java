@@ -1,8 +1,10 @@
 package game.grids;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.function.Consumer;
 
-public interface Grid<T> {
+public interface Grid<T> extends Iterable<T> {
     T get(int x, int y);
     void set(int x, int y, T value);
     void remove(int x, int y);
@@ -38,5 +40,9 @@ public interface Grid<T> {
             result += "[" + String.join(" ",array) + "]\n";
         }
         return result;
+    }
+    @Override
+    default Iterator<T> iterator() {
+        return new GridItr<T>(this);
     }
 }

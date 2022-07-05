@@ -46,17 +46,8 @@ public class FullGrid<T> implements Grid<T> {
 
     @Override
     public boolean contains(T value) {
-        for(ArrayList<T> array: posXPosY) {
-            for(T iterValue : array) {if(value.equals(iterValue)) {return true;}}
-        }
-        for(ArrayList<T> array: negXPosY) {
-            for(T iterValue : array) {if(value.equals(iterValue)) {return true;}}
-        }
-        for(ArrayList<T> array: posXNegY) {
-            for(T iterValue : array) {if(value.equals(iterValue)) {return true;}}
-        }
-        for(ArrayList<T> array: negXNegY) {
-            for(T iterValue : array) {if(value.equals(iterValue)) {return true;}}
+        for(T iterValue : this) {
+            if(value.equals(iterValue)) {return true;}
         }
         return false;
     }
