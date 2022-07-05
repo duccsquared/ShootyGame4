@@ -19,6 +19,9 @@ public class Player extends Entity {
         if(Key.held(Key.A)) {speedX -= this.speed;}
         if(Key.held(Key.S)) {speedY += this.speed;}
         if(Key.held(Key.D)) {speedX += this.speed;}
-        this.movePos(speedX,speedY);
+        this.moveX(speedX);
+        this.resolveCollisionsX(Wall.class,-speedX);
+        this.moveY(speedY);
+        this.resolveCollisionsY(Wall.class,-speedY);
     }
 }
