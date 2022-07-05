@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 
 public class GamePanel extends Panel {
     public GamePanel() {
-        super(new Color(100,120,100), 25);
+        super(new Color(26,26,26), 25);
     }
 
     @Override

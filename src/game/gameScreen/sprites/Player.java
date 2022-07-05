@@ -8,7 +8,7 @@ public class Player extends Entity {
     public static final double HALF_SIZE = 16;
     private double speed = 200/Global.secondsToTicks(1);
     public Player(Screen screen, double x, double y) {
-        super(screen, 64,200,64,100,250,100, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE);
+        super(screen, 26,26,26,100,250,100, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE);
     }
 
     @Override
