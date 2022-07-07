@@ -1,4 +1,6 @@
-package game.grids;
+package game.grids.iterators;
+
+import game.grids.Grid;
 
 import java.util.Iterator;
 
@@ -6,7 +8,7 @@ public class GridItr<T> implements Iterator<T> {
     private Grid<T> grid;
     private int cursorX;
     private int cursorY;
-    protected GridItr(Grid grid) {
+    public GridItr(Grid grid) {
         this.grid = grid;
         cursorX = grid.getXMin();
         cursorY = grid.getYMin();

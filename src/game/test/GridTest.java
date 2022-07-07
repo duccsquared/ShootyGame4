@@ -74,4 +74,22 @@ public class GridTest {
             Assert.assertFalse(grid.contains(8.5));
         }
     }
+    @Test
+    public void testIterNonNull() {
+        for(Grid<Integer> grid: new Grid[] {new FullGrid<>(), new SparseGrid<>()}) {
+            grid.set(0,0,1);
+            grid.set(-1,14,2);
+            grid.set(8,1,3);
+            grid.set(-3,-1,4);
+            grid.set(3,-1,5);
+            ArrayList<Integer> intArray = new ArrayList<>();
+            for(Integer val : grid.nonNullIterator()) {
+                intArray.add(val);
+            }
+            Assert.assertEquals(5,intArray.size());
+            for(int i = 1; i <= 5; i++) {
+                Assert.assertTrue(intArray.contains(i));
+            }
+        }
+    }
 }

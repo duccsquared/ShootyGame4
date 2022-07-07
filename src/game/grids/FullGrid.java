@@ -1,6 +1,10 @@
 package game.grids;
 
+import game.grids.iterators.GridIterable;
+import game.grids.iterators.NonNullFullItr;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class FullGrid<T> implements Grid<T> {
     ArrayList<ArrayList<T>> posXPosY = new ArrayList<>();
@@ -102,5 +106,9 @@ public class FullGrid<T> implements Grid<T> {
 
     public String toString() {
         return this.toStr();
+    }
+    @Override
+    public Iterable<T> nonNullIterator() {
+        return new GridIterable<T>(new NonNullFullItr<T>(this));
     }
 }

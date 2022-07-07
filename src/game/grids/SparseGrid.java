@@ -1,7 +1,10 @@
 package game.grids;
 
+import game.grids.iterators.GridIterable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class SparseGrid<T> implements Grid<T> {
     private HashMap<String,T> sparseMap = new HashMap<>();
@@ -40,7 +43,17 @@ public class SparseGrid<T> implements Grid<T> {
     public int getXMax() {return xMax;}
     @Override
     public int getYMax() {return yMax;}
+
+    @Override
+    public Iterable<T> nonNullIterator() {
+        return new GridIterable<T>(sparseMap.values().iterator());
+    }
+
     public String toString() {
         return this.toStr();
     }
+    public ArrayList<T> getValues() {
+        return (ArrayList<T>) sparseMap.values();
+    }
+
 }
