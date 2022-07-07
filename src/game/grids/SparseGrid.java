@@ -35,6 +35,32 @@ public class SparseGrid<T> implements Grid<T> {
     public boolean contains(T value) {
         return sparseMap.containsValue(value);
     }
+
+    @Override
+    public void clear() {
+        this.sparseMap.clear();
+    }
+
+    @Override
+    public int indexXOf(T value) {
+        for(String key : sparseMap.keySet()) {
+            if(value.equals(this.sparseMap.get(key))) {
+                return Integer.parseInt(key.split(" ")[0]);
+            }
+        }
+        throw new RuntimeException();
+    }
+
+    @Override
+    public int indexYOf(T value) {
+        for(String key : sparseMap.keySet()) {
+            if(value.equals(this.sparseMap.get(key))) {
+                return Integer.parseInt(key.split(" ")[1]);
+            }
+        }
+        throw new RuntimeException();
+    }
+
     @Override
     public int getXMin() {return xMin;}
     @Override

@@ -92,4 +92,41 @@ public class GridTest {
             }
         }
     }
+
+    @Test
+    public void testClear() {
+        for(Grid<String> grid: new Grid[] {new FullGrid<>(), new SparseGrid<>()}) {
+            grid.set(3,-2,"red");
+            grid.set(8,-4,"green");
+            grid.set(9,-2,"blue");
+            grid.set(0,-2,"yellow");
+            System.out.println(grid);
+            Assert.assertTrue(grid.contains("red"));
+            Assert.assertTrue(grid.contains("green"));
+            Assert.assertTrue(grid.contains("blue"));
+            Assert.assertTrue(grid.contains("yellow"));
+            grid.clear();
+            Assert.assertFalse(grid.contains("red"));
+            Assert.assertFalse(grid.contains("green"));
+            Assert.assertFalse(grid.contains("blue"));
+            Assert.assertFalse(grid.contains("yellow"));
+        }
+    }
+    @Test
+    public void testIndex() {
+        for(Grid<String> grid: new Grid[] {new FullGrid<>(), new SparseGrid<>()}) {
+            grid.set(0,2,"kangaroo");
+            grid.set(0,4,"koala");
+            grid.set(8,2,"dropbear");
+            grid.set(1,4,"wallaby");
+            Assert.assertEquals(0,grid.indexXOf("kangaroo"));
+            Assert.assertEquals(2,grid.indexYOf("kangaroo"));
+            Assert.assertEquals(0,grid.indexXOf("koala"));
+            Assert.assertEquals(4,grid.indexYOf("koala"));
+            Assert.assertEquals(8,grid.indexXOf("dropbear"));
+            Assert.assertEquals(2,grid.indexYOf("dropbear"));
+            Assert.assertEquals(1,grid.indexXOf("wallaby"));
+            Assert.assertEquals(4,grid.indexYOf("wallaby"));
+        }
+    }
 }

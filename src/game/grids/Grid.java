@@ -10,6 +10,9 @@ public interface Grid<T> extends Iterable<T> {
     void set(int x, int y, T value);
     void remove(int x, int y);
     boolean contains(T value);
+    void clear();
+    int indexXOf(T value);
+    int indexYOf(T value);
     int getXMin();
     int getYMin();
     int getXMax();

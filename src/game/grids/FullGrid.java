@@ -17,10 +17,10 @@ public class FullGrid<T> implements Grid<T> {
         posXNegY.add(new ArrayList<T>());
         negXNegY.add(new ArrayList<T>());
     }
-    public int getXMin() {return -(negXPosY.get(0).size() - 1);}
-    public int getYMin() {return -(posXNegY.size() - 1);}
-    public int getXMax() {return posXPosY.get(0).size() - 1;}
-    public int getYMax() {return posXPosY.size() - 1;}
+    public int getXMin() {return Math.min(0,-(negXPosY.get(0).size() - 1));}
+    public int getYMin() {return Math.min(0,-(posXNegY.size() - 1));}
+    public int getXMax() {return Math.max(0,posXPosY.get(0).size() - 1);}
+    public int getYMax() {return Math.max(0,posXPosY.size() - 1);}
 
     public T get(int x, int y) {
         ArrayList<ArrayList<T>> subGrid = this.getCorrectSubgrid(x,y);
@@ -54,6 +54,41 @@ public class FullGrid<T> implements Grid<T> {
             if(value.equals(iterValue)) {return true;}
         }
         return false;
+    }
+
+    @Override
+    public void clear() {
+        for(int i = this.getXMin(); i <= this.getXMax(); i++) {
+            for(int j = this.getYMin(); j <= this.getYMax(); j++) {
+                this.set(i,j,null);
+            }
+        }
+    }
+
+    @Override
+    public int indexXOf(T value) {
+        for(int i = this.getXMin(); i <= this.getXMax(); i++) {
+            for(int j = this.getYMin(); j <= this.getYMax(); j++) {
+                T comparedVal = this.get(i,j);
+                if(value.equals(comparedVal)) {
+                    return i;
+                }
+            }
+        }
+        throw new RuntimeException();
+    }
+
+    @Override
+    public int indexYOf(T value) {
+        for(int i = this.getXMin(); i <= this.getXMax(); i++) {
+            for(int j = this.getYMin(); j <= this.getYMax(); j++) {
+                T comparedVal = this.get(i,j);
+                if(value.equals(comparedVal)) {
+                    return j;
+                }
+            }
+        }
+        throw new RuntimeException();
     }
 
     private ArrayList<ArrayList<T>> getCorrectSubgrid(int x, int y) {
