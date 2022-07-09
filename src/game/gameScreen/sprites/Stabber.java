@@ -8,7 +8,7 @@ public class Stabber extends Enemy {
 
     public Stabber(Screen screen, double x, double y) {
         super(screen, 26,26,26,250,100,100, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE);
-        this.setSpeed(3);
+        this.setSpeed(Global.convertSpeedInSecondsToTicks(100));
     }
 
     @Override
