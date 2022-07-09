@@ -14,14 +14,11 @@ public class Player extends Entity {
     @Override
     public void tick() {
         super.tick();
-        double speedX = 0; double speedY = 0;
-        if(Key.held(Key.W)) {speedY -= this.speed;}
-        if(Key.held(Key.A)) {speedX -= this.speed;}
-        if(Key.held(Key.S)) {speedY += this.speed;}
-        if(Key.held(Key.D)) {speedX += this.speed;}
-        this.moveX(speedX);
-        this.resolveCollisionsX(Wall.class,-speedX);
-        this.moveY(speedY);
-        this.resolveCollisionsY(Wall.class,-speedY);
+        this.setSpeedX(0); this.setSpeedY(0);
+        if(Key.held(Key.W)) {this.changeSpeedY(-this.speed);}
+        if(Key.held(Key.A)) {this.changeSpeedX(-this.speed);}
+        if(Key.held(Key.S)) {this.changeSpeedY(this.speed);}
+        if(Key.held(Key.D)) {this.changeSpeedX(this.speed);}
+        this.moveEntity();
     }
 }

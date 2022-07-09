@@ -3,6 +3,7 @@ package game.screens;
 import engine.screens.BaseScreen;
 import game.Global;
 import game.gameScreen.sprites.Player;
+import game.gameScreen.sprites.Stabber;
 import game.gameScreen.sprites.Wall;
 
 public class GameScreen extends BaseScreen {
@@ -20,6 +21,7 @@ public class GameScreen extends BaseScreen {
         new Wall(this,2*Wall.HALF_SIZE*24+Wall.HALF_SIZE,2*Wall.HALF_SIZE*-4+Wall.HALF_SIZE);
         new Wall(this,2*Wall.HALF_SIZE*-4+Wall.HALF_SIZE,2*Wall.HALF_SIZE*24+Wall.HALF_SIZE);
         new Wall(this,2*Wall.HALF_SIZE*24+Wall.HALF_SIZE,2*Wall.HALF_SIZE*24+Wall.HALF_SIZE);
+        new Stabber(this,200,200);
         this.getCamera().attachObject(player);
     }
 }
