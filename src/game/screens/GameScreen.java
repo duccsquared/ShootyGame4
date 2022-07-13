@@ -1,6 +1,8 @@
 package game.screens;
 
 import engine.screens.BaseScreen;
+import engine.utils.Mouse;
+import game.Faction;
 import game.Global;
 import game.gameScreen.sprites.Player;
 import game.gameScreen.sprites.Stabber;
@@ -23,5 +25,16 @@ public class GameScreen extends BaseScreen {
         new Wall(this,2*Wall.HALF_SIZE*24+Wall.HALF_SIZE,2*Wall.HALF_SIZE*24+Wall.HALF_SIZE);
         new Stabber(this,200,200);
         this.getCamera().attachObject(player);
+        Faction.setAsHostile(Global.playerFaction,Global.enemyFaction);
+    }
+
+
+    @Override
+    public boolean onUnhandledMouseClick() {
+        if(Mouse.leftHeld()) {
+            player.onLeftHeld();
+            return true;
+        }
+        return false;
     }
 }

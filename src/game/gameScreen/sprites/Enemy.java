@@ -1,5 +1,6 @@
 package game.gameScreen.sprites;
 
+import engine.managers.ObjectInstanceManager;
 import engine.screens.Screen;
 import game.Global;
 
@@ -10,11 +11,12 @@ public abstract class Enemy extends Entity {
     private double targetY;
     private double speed;
     public Enemy(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2) {
-        super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2);
+        super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2,Global.enemyFaction);
         this.targetX = this.x();
         this.targetY = this.y();
         this.currentTargetX = this.targetX;
         this.currentTargetY = this.targetY;
+        ObjectInstanceManager.getInstance().addInstance(this,Enemy.class);
     }
 
     public double getSpeed() {return speed;}
@@ -23,6 +25,12 @@ public abstract class Enemy extends Entity {
     public void setSpeed(double speed) {this.speed = speed;}
     public void setTargetX(double targetX) {this.targetX = targetX;}
     public void setTargetY(double targetY) {this.targetY = targetY;}
+
+    @Override
+    public void delete() {
+        super.delete();
+        ObjectInstanceManager.getInstance().removeInstance(this,Enemy.class);
+    }
 
     @Override
     public void tick() {
@@ -43,8 +51,6 @@ public abstract class Enemy extends Entity {
             double[] coords = Global.dirToCoor(Global.coorToDir(this.x(),this.y(),this.targetX,this.targetY));
             this.setSpeedX(coords[0]*this.getSpeed());
             this.setSpeedY(coords[1]*this.getSpeed());
-            System.out.println(this.getSpeedX());
-            System.out.println(this.getSpeedY());
         }
         super.moveEntity();
     }
