@@ -6,7 +6,7 @@ import engine.screens.Screen;
 import game.Faction;
 import game.Global;
 
-public class Entity extends Sprite {
+public abstract class Entity extends GameObject {
     private double speedX = 0;
     private double speedY = 0;
     private Faction faction;

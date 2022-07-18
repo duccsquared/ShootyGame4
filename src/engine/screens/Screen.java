@@ -20,6 +20,7 @@ public abstract class Screen {
 
     public String getId() {return id;}
     protected ArrayList<BaseObject> getObjectArray() {return objectArray;}
+    public ArrayList<SubScreen> getSubScreenArray() {return (ArrayList<SubScreen>) subScreenArray.clone();}
     public void addSubScreen(SubScreen subScreen) {
         this.subScreenArray.add(subScreen);
     }
@@ -64,7 +65,7 @@ public abstract class Screen {
         dragManager.tick();
         for(SubScreen subScreen: subScreenArray) {subScreen.secondTick();}
     }
-    protected boolean handleMouseClick() {
+    public boolean handleMouseClick() {
         boolean handled = false;
         if(dragManager.getObject()!=null) {return true;}
         for(int i = subScreenArray.size()-1; i>=0; i--) {

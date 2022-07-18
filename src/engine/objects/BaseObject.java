@@ -6,6 +6,7 @@ import engine.screens.Screen;
 import engine.screens.SubScreen;
 import engine.utils.BaseGlobal;
 import engine.utils.Mouse;
+import game.gameScreen.sprites.Wall;
 
 import java.awt.*;
 import java.util.ArrayList;

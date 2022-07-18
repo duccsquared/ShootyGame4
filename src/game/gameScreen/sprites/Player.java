@@ -6,7 +6,7 @@ import engine.utils.Mouse;
 import game.Global;
 
 public class Player extends Entity {
-    private int cooldown = 0;
+    private int cooldown = (int) Global.secondsToTicks(0.5);
     public static final double HALF_SIZE = 16;
     private double speed = Global.convertSpeedInSecondsToTicks(200);
     public Player(Screen screen, double x, double y) {

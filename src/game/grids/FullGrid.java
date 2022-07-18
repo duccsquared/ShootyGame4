@@ -17,6 +17,17 @@ public class FullGrid<T> implements Grid<T> {
         posXNegY.add(new ArrayList<T>());
         negXNegY.add(new ArrayList<T>());
     }
+    public FullGrid(int xMin, int yMin, int xMax, int yMax) {
+        posXPosY.add(new ArrayList<T>());
+        negXPosY.add(new ArrayList<T>());
+        posXNegY.add(new ArrayList<T>());
+        negXNegY.add(new ArrayList<T>());
+        this.set(xMin,yMin,null);
+        this.set(xMax,yMin,null);
+        this.set(xMin,yMax,null);
+        this.set(xMax,yMax,null);
+
+    }
     public int getXMin() {return Math.min(0,-(negXPosY.get(0).size() - 1));}
     public int getYMin() {return Math.min(0,-(posXNegY.size() - 1));}
     public int getXMax() {return Math.max(0,posXPosY.get(0).size() - 1);}

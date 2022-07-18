@@ -45,5 +45,8 @@ public class Bullet extends Entity {
             this.delete();
             intersectingEntity.delete();
         }
+        if(Global.distance(startX,startY,x(),y())>600) {
+            this.delete();
+        }
     }
 }
