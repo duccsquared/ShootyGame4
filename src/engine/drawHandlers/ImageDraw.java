@@ -20,18 +20,28 @@ public class ImageDraw extends DrawHandler{
     }
     @Override
     public void paint(Graphics2D g2d, BaseObject object) {
-        if(object.width()!= currentWidth || object.height() != currentHeight) {
-            currentWidth = object.width();
-            currentHeight = object.height();
-            img = baseImg.getScaledInstance((int) object.width(), (int) object.height(), Image.SCALE_DEFAULT);
-            boolean result = false;
-            while (!result) {
-                result = rotateAndDraw(g2d,object);
+        int x = (int) object.getAbsX1();
+        int y = (int) object.getAbsY1();
+        int width = (int) object.width();
+        int height = (int) object.height();
+        if(x < App.getInstance().getWidth() &&
+                x+width > 0 &&
+                y < App.getInstance().getHeight() &&
+                y+height > 0) {
+            if(object.width()!= currentWidth || object.height() != currentHeight) {
+                currentWidth = object.width();
+                currentHeight = object.height();
+                img = baseImg.getScaledInstance((int) object.width(), (int) object.height(), Image.SCALE_DEFAULT);
+                boolean result = false;
+                while (!result) {
+                    result = rotateAndDraw(g2d,object);
+                }
+            }
+            else {
+                rotateAndDraw(g2d,object);
             }
         }
-        else {
-            rotateAndDraw(g2d,object);
-        }
+
     }
     private boolean rotateAndDraw(Graphics2D g2d, BaseObject object) {
         boolean result;
