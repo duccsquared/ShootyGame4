@@ -10,7 +10,7 @@ public class Player extends Entity {
     public static final double HALF_SIZE = 16;
     private double speed = Global.convertSpeedInSecondsToTicks(200);
     public Player(Screen screen, double x, double y) {
-        super(screen, 26,26,26,100,250,100, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,Global.playerFaction);    }
+        super(screen, 100,250,100,100,250,100, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,Global.playerFaction);    }
 
     @Override
     public void tick() {
@@ -26,7 +26,7 @@ public class Player extends Entity {
     public void onLeftHeld() {
         if(cooldown<=0) {
             cooldown = (int) Global.secondsToTicks(0.5);
-            new Bullet(this.getScreen(),26,26,26,50,250,50,this.x(),this.y(),Mouse.relMousePosX(this.getScreen()),Mouse.relMousePosY(this.getScreen()),this.getFaction());
+            new Bullet(this.getScreen(),50,250,50,50,250,50,this.x(),this.y(),Mouse.relMousePosX(this.getScreen()),Mouse.relMousePosY(this.getScreen()),this.getFaction());
         }
     }
 }

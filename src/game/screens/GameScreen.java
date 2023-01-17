@@ -15,17 +15,41 @@ public class GameScreen extends BaseScreen {
         super(id);
         player = new Player(this,300,300);
         for(int i = 0; i < 20; i++) {
-            double posX = Global.randInt(-4,24);
-            double posY = Global.randInt(-4,24);
-            new Wall(this,2*Wall.HALF_SIZE*posX+Wall.HALF_SIZE,2*Wall.HALF_SIZE*posY+Wall.HALF_SIZE);
+            int posX = Global.randInt(-4,24);
+            int posY = Global.randInt(-4,24);
+            new Wall(this,Wall.wallCoordToCoord(posX),Wall.wallCoordToCoord(posY));
         }
-        new Wall(this,2*Wall.HALF_SIZE*-4+Wall.HALF_SIZE,2*Wall.HALF_SIZE*-4+Wall.HALF_SIZE);
-        new Wall(this,2*Wall.HALF_SIZE*24+Wall.HALF_SIZE,2*Wall.HALF_SIZE*-4+Wall.HALF_SIZE);
-        new Wall(this,2*Wall.HALF_SIZE*-4+Wall.HALF_SIZE,2*Wall.HALF_SIZE*24+Wall.HALF_SIZE);
-        new Wall(this,2*Wall.HALF_SIZE*24+Wall.HALF_SIZE,2*Wall.HALF_SIZE*24+Wall.HALF_SIZE);
         new Stabber(this,200,200);
         this.getCamera().attachObject(player);
         Faction.setAsHostile(Global.playerFaction,Global.enemyFaction);
+//        for(int x = -4; x <= 24; x++) {
+//            new Wall(this,Wall.wallCoordToCoord(x),Wall.wallCoordToCoord(-4));
+//            new Wall(this,Wall.wallCoordToCoord(x),Wall.wallCoordToCoord(24));
+//        }
+        new Wall(this,
+                Wall.wallCoordToCoord(-24)-Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(-24)-Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(-24)+Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(24)+Wall.HALF_SIZE);
+        new Wall(this,
+                Wall.wallCoordToCoord(24)-Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(-24)-Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(24)+Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(24)+Wall.HALF_SIZE);
+        new Wall(this,
+                Wall.wallCoordToCoord(-24)-Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(-24)-Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(24)+Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(-24)+Wall.HALF_SIZE);
+        new Wall(this,
+                Wall.wallCoordToCoord(-24)-Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(24)-Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(24)+Wall.HALF_SIZE,
+                Wall.wallCoordToCoord(24)+Wall.HALF_SIZE);
+//        for(int y = -4; y <= 24; y++) {
+//            new Wall(this,Wall.wallCoordToCoord(-4),Wall.wallCoordToCoord(y));
+//            new Wall(this,Wall.wallCoordToCoord(24),Wall.wallCoordToCoord(y));
+//        }
     }
 
 
