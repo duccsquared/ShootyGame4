@@ -1,16 +1,26 @@
 package game.screens;
 
+import engine.managers.ObjectInstanceManager;
+import engine.objects.BaseObject;
 import engine.screens.BaseScreen;
 import engine.utils.Mouse;
 import game.Faction;
 import game.Global;
+import game.gameScreen.FPSCounter;
+import game.gameScreen.sprites.Enemy;
 import game.gameScreen.sprites.Player;
 import game.gameScreen.sprites.Stabber;
 import game.gameScreen.sprites.Wall;
 
+import java.util.ArrayList;
+
 public class GameScreen extends BaseScreen {
     public static String id = "gameWorld";
-    Player player;
+    public final int MIN_X = -800;
+    public final int MIN_Y = -800;
+    public final int MAX_X = 1200;
+    public final int MAX_Y = 800;
+    public final int MARGIN = 400;    Player player;
     public GameScreen() {
         super(id);
         player = new Player(this,-600,-600);
@@ -22,11 +32,7 @@ public class GameScreen extends BaseScreen {
         Faction.setAsHostile(Global.playerFaction,Global.enemyFaction);
 
         // map borders
-        final int MIN_X = -800;
-        final int MIN_Y = -800;
-        final int MAX_X = 1200;
-        final int MAX_Y = 800;
-        final int MARGIN = 400;
+
 
         new Wall(this, MIN_X-MARGIN, MIN_Y, MIN_X, MAX_Y);
         new Wall(this, MAX_X, MIN_Y, MAX_X+MARGIN, MAX_Y);
@@ -77,5 +83,20 @@ public class GameScreen extends BaseScreen {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void tick() {
+        handleEnemySpawns();
+        super.tick();
+    }
+
+    public void handleEnemySpawns() {
+        ArrayList<BaseObject> enemyArray = ObjectInstanceManager.getInstance().getArrayList(Enemy.class);
+        int enemyCount = enemyArray.size();
+
+        if(enemyCount<5 && Global.randInt(0,100)==0) {
+            new Stabber(this,Global.randInt(-350,1180),Global.randInt(-768,768));
+        }
     }
 }
