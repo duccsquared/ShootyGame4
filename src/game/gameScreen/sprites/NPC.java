@@ -29,6 +29,7 @@ public class NPC extends Entity {
     public double getSpeed() {return speed;}
     public double getTargetX() {return targetX;}
     public double getTargetY() {return targetY;}
+    public Behaviour getBehaviour() {return behaviour;}
     public void setSpeed(double speed) {this.speed = speed;}
     public void setTargetX(double targetX) {this.targetX = targetX;}
     public void setTargetY(double targetY) {this.targetY = targetY;}
@@ -53,6 +54,11 @@ public class NPC extends Entity {
         if(this.targetX!=this.currentTargetX || this.targetY!=this.currentTargetY) {
             this.currentTargetX = this.targetX;
             this.currentTargetY = this.targetY;
+            double[] coords = Global.dirToCoor(Global.coorToDir(this.x(),this.y(),this.targetX,this.targetY));
+            this.setSpeedX(coords[0]*this.getSpeed());
+            this.setSpeedY(coords[1]*this.getSpeed());
+        }
+        else if(Math.abs(this.targetX - this.x())<this.getSpeed() && Math.abs(this.targetY - this.y())<this.getSpeed())  {
             double[] coords = Global.dirToCoor(Global.coorToDir(this.x(),this.y(),this.targetX,this.targetY));
             this.setSpeedX(coords[0]*this.getSpeed());
             this.setSpeedY(coords[1]*this.getSpeed());

@@ -1,10 +1,13 @@
 package game.gameScreen.sprites;
 
 import engine.managers.ObjectInstanceManager;
+import engine.objects.BaseObject;
 import engine.objects.Sprite;
 import engine.screens.Screen;
 import game.Faction;
 import game.Global;
+
+import java.util.ArrayList;
 
 public class Entity extends Sprite {
     private double speedX = 0;
@@ -58,6 +61,23 @@ public class Entity extends Sprite {
         this.resolveCollisionsX(Wall.class,-speedX);
         this.moveY(speedY);
         this.resolveCollisionsY(Wall.class,-speedY);
+    }
+
+    protected Entity getClosestHostile() {
+        ArrayList<BaseObject> entityList = ObjectInstanceManager.getInstance().getArrayList(Entity.class);
+        Entity closest = null;
+        double distance = 99999999;
+        for(BaseObject object : entityList) {
+            Entity entity = (Entity) object;
+            if(entity.faction.isHostileTo(this.getFaction())) {
+                double calcDist = Global.distance(this.x(),this.y(),entity.x(),entity.y());
+                if(calcDist<distance) {
+                    closest = entity;
+                    distance = calcDist;
+                }
+            }
+        }
+        return closest;
     }
 
 }
