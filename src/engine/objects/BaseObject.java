@@ -22,6 +22,7 @@ public abstract class BaseObject {
     private boolean fixChildrenAngleToParent = true;
     private ArrayList<BaseObject> childList = new ArrayList<>();
     private boolean draggable = false;
+    private boolean drawLast = false;
     public BaseObject(Screen screen, DrawHandler drawHandler, double x1, double y1, double x2, double y2){
         this.init(screen,drawHandler,x1,y1,x2,y2);
     }
@@ -73,6 +74,7 @@ public abstract class BaseObject {
         return fixChildrenAngleToParent;
     }
     public boolean isDraggable() {return draggable;}
+    public boolean isDrawLast() {return drawLast;}
     public ArrayList<BaseObject> getChildList() {
         return (ArrayList<BaseObject>) childList.clone();
     }
@@ -150,6 +152,7 @@ public abstract class BaseObject {
         this.setX(x);
         this.setY(y);
     }
+    public void setDrawLast(boolean drawLast) {this.drawLast = drawLast;}
     public void moveX(double x) {
         this.setX(this.x()+x);
     }

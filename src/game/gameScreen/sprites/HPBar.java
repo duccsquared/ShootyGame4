@@ -42,6 +42,7 @@ class BGSprite extends Sprite {
                 chara.x()+30,
                 chara.y()-chara.width()*0.5-10
         );
+        this.setDrawLast(true);
     }
 }
 class HPSprite extends Sprite {
@@ -52,5 +53,6 @@ class HPSprite extends Sprite {
                 chara.x()+28,
                 chara.y()-chara.width()*0.5-12
         );
+        this.setDrawLast(true);
     }
 }

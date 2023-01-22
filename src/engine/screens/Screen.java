@@ -92,7 +92,14 @@ public abstract class Screen {
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         for(BaseObject object : objectArray) {
-            object.paint(g2d);
+            if(!object.isDrawLast()) {
+                object.paint(g2d);
+            }
+        }
+        for(BaseObject object : objectArray) {
+            if (object.isDrawLast()) {
+                object.paint(g2d);
+            }
         }
         for(SubScreen subScreen : subScreenArray) {subScreen.paintComponent(g);}
     };
