@@ -5,7 +5,7 @@ import engine.screens.Screen;
 import game.Global;
 import game.behaviours.Behaviour;
 
-public class NPC extends Entity {
+public class NPC extends Character {
     private double currentTargetX;
     private double currentTargetY;
     private double targetX;

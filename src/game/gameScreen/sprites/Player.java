@@ -5,7 +5,7 @@ import engine.utils.Key;
 import engine.utils.Mouse;
 import game.Global;
 
-public class Player extends Entity {
+public class Player extends Character {
     private int cooldown = 0;
     public static final double HALF_SIZE = 16;
     private double speed = Global.convertSpeedInSecondsToTicks(200);
@@ -26,7 +26,7 @@ public class Player extends Entity {
     public void onLeftHeld() {
         if(cooldown<=0) {
             cooldown = (int) Global.secondsToTicks(0.5);
-            new Bullet(this.getScreen(),50,250,50,50,250,50,this.x(),this.y(),Mouse.relMousePosX(this.getScreen()),Mouse.relMousePosY(this.getScreen()),this.getFaction());
+            new Bullet(this.getScreen(),50,250,50,50,250,50,this.x(),this.y(),Mouse.relMousePosX(this.getScreen()),Mouse.relMousePosY(this.getScreen()),2,this.getFaction());
         }
     }
 }

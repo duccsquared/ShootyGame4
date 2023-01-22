@@ -63,6 +63,8 @@ public class Entity extends Sprite {
         this.resolveCollisionsY(Wall.class,-speedY);
     }
 
+
+
     protected Entity getClosestHostile() {
         ArrayList<BaseObject> entityList = ObjectInstanceManager.getInstance().getArrayList(Entity.class);
         Entity closest = null;

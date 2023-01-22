@@ -11,25 +11,27 @@ public class Bullet extends Entity {
     private double startX;
     private double startY;
     private double speed = Global.convertSpeedInSecondsToTicks(300);
-    public Bullet(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x, double y, double dir) {
-        super(screen, r, g, b, borderR, borderG, borderB, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE);
-        this.init(dir);
-    }
+    private double damage;
     public Bullet(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x, double y, double dir, Faction faction) {
         super(screen, r, g, b, borderR, borderG, borderB, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,faction);
-        this.init(dir);
+        this.init(dir,1);
     }
     public Bullet(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x, double y, double targetX, double targetY, Faction faction) {
         super(screen, r, g, b, borderR, borderG, borderB, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,faction);
-        this.init(Global.coorToDir(this.x(),this.y(),targetX,targetY));
+        this.init(Global.coorToDir(this.x(),this.y(),targetX,targetY),1);
+    }
+    public Bullet(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x, double y, double targetX, double targetY, double damage,Faction faction) {
+        super(screen, r, g, b, borderR, borderG, borderB, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,faction);
+        this.init(Global.coorToDir(this.x(),this.y(),targetX,targetY),damage);
     }
 
-    protected void init(double dir) {
+    protected void init(double dir, double damage) {
         double[] coords = Global.dirToCoor(dir);
         this.startX = this.x();
         this.startY = this.y();
         this.setSpeedX(coords[0]*this.speed);
         this.setSpeedY(coords[1]*this.speed);
+        this.damage = damage;
     }
 
     @Override
@@ -40,10 +42,10 @@ public class Bullet extends Entity {
         if(intersectingWall!=null) {
             this.delete();
         }
-        Entity intersectingEntity = (Entity) this.findIntersecting(Entity.class);
-        if(intersectingEntity!=null && this.getFaction().isHostileTo(intersectingEntity)) {
+        Character intersectingChara = (Character) this.findIntersecting(Character.class);
+        if(intersectingChara!=null && this.getFaction().isHostileTo(intersectingChara)) {
             this.delete();
-            intersectingEntity.delete();
+            intersectingChara.damage(this.damage);
         }
     }
 }
