@@ -14,26 +14,28 @@ public class Character extends Entity {
 
     public Character(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2, double maxHp) {
         super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2);
-        this.init2();
+        this.init2(maxHp);
     }
 
     public Character(Screen screen, String imgPath, double x1, double y1, double x2, double y2, double maxHp) {
         super(screen, imgPath, x1, y1, x2, y2);
-        this.init2();
+        this.init2(maxHp);
     }
 
     public Character(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2, double maxHp, Faction faction) {
         super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2, faction);
-        this.init2();
+        this.init2(maxHp);
     }
 
     public Character(Screen screen, String imgPath, double x1, double y1, double x2, double y2, double maxHp, Faction faction) {
         super(screen, imgPath, x1, y1, x2, y2, faction);
-        this.init2();
+        this.init2(maxHp);
     }
 
-    protected void init2() {
+    protected void init2(double maxHp) {
         this.hpBar = new HPBar(this);
+        this.setMaxHp(maxHp);
+        this.setHp(maxHp);
         ObjectInstanceManager.getInstance().addInstance(this,Character.class);
     }
 
