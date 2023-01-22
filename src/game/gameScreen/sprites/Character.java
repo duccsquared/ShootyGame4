@@ -12,22 +12,22 @@ public class Character extends Entity {
     protected HPBar hpBar;
 
 
-    public Character(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2) {
+    public Character(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2, double maxHp) {
         super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2);
         this.init2();
     }
 
-    public Character(Screen screen, String imgPath, double x1, double y1, double x2, double y2) {
+    public Character(Screen screen, String imgPath, double x1, double y1, double x2, double y2, double maxHp) {
         super(screen, imgPath, x1, y1, x2, y2);
         this.init2();
     }
 
-    public Character(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2, Faction faction) {
+    public Character(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2, double maxHp, Faction faction) {
         super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2, faction);
         this.init2();
     }
 
-    public Character(Screen screen, String imgPath, double x1, double y1, double x2, double y2, Faction faction) {
+    public Character(Screen screen, String imgPath, double x1, double y1, double x2, double y2, double maxHp, Faction faction) {
         super(screen, imgPath, x1, y1, x2, y2, faction);
         this.init2();
     }

@@ -9,11 +9,10 @@ import game.screens.GameScreen;
 public class Stabber extends Enemy {
     public static final double HALF_SIZE = 16;
     private boolean attackMode = false;
+    private final static double WANDER_SPEED = Global.convertSpeedInSecondsToTicks(50);
+    private final static double ATTACK_SPEED = Global.convertSpeedInSecondsToTicks(100);
     public Stabber(Screen screen, double x, double y) {
-        super(screen, 250,100,100,250,100,100, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE);
-        this.setSpeed(Global.convertSpeedInSecondsToTicks(50));
-        this.setMaxHp(4);
-        this.setHp(4);
+        super(screen, 250,100,100,250,100,100, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE, 4,WANDER_SPEED);
         this.setBehaviour(new Wander(this));
     }
 
@@ -27,14 +26,14 @@ public class Stabber extends Enemy {
                 if(dist<250 || attackMode && dist<400) {
                     if(attackMode==false) {
                         this.setBehaviour(new DirectMelee(this,hostile));
-                        this.setSpeed(Global.convertSpeedInSecondsToTicks(100));
+                        this.setSpeed(ATTACK_SPEED);
                         this.attackMode = true;
                     }
                 }
                 else {
                     if(attackMode==true) {
                         this.setBehaviour(new Wander(this));
-                        this.setSpeed(Global.convertSpeedInSecondsToTicks(50));
+                        this.setSpeed(WANDER_SPEED);
                         this.attackMode = false;
                     }
                 }

@@ -2,6 +2,7 @@ package game.gameScreen.sprites;
 
 import engine.managers.ObjectInstanceManager;
 import engine.screens.Screen;
+import game.Faction;
 import game.Global;
 import game.behaviours.Behaviour;
 
@@ -12,12 +13,13 @@ public class NPC extends Character {
     private double targetY;
     private double speed;
     private Behaviour behaviour = null;
-    public NPC(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2) {
-        super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2, Global.enemyFaction);
+    public NPC(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2,double maxHp, double speed, Faction faction) {
+        super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2, maxHp, faction);
         this.targetX = this.x();
         this.targetY = this.y();
         this.currentTargetX = this.targetX;
         this.currentTargetY = this.targetY;
+        this.speed = speed;
         ObjectInstanceManager.getInstance().addInstance(this,Enemy.class);
     }
     @Override
