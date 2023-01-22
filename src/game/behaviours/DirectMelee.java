@@ -13,7 +13,9 @@ public class DirectMelee extends Behaviour {
 
     @Override
     public void onTickStart() {
-
+        if(this.getNpc().intersects(target)) {
+            target.damage(0.1);
+        }
     }
 
     @Override
