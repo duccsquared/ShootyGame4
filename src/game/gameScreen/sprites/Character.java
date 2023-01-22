@@ -1,10 +1,13 @@
 package game.gameScreen.sprites;
 
 import engine.managers.ObjectInstanceManager;
+import engine.objects.BaseObject;
 import engine.screens.Screen;
 import game.Faction;
+import game.Global;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Character extends Entity {
     private double maxHp = 1;
@@ -65,5 +68,22 @@ public class Character extends Entity {
     public void paint(Graphics2D g2d) {
         this.hpBar.tick();
         super.paint(g2d);
+    }
+
+    protected Character getClosestHostile() {
+        ArrayList<BaseObject> entityList = ObjectInstanceManager.getInstance().getArrayList(Character.class);
+        Character closest = null;
+        double distance = 99999999;
+        for(BaseObject object : entityList) {
+            Character chara = (Character) object;
+            if(chara.getFaction().isHostileTo(this.getFaction())) {
+                double calcDist = Global.distance(this.x(),this.y(),chara.x(),chara.y());
+                if(calcDist<distance) {
+                    closest = chara;
+                    distance = calcDist;
+                }
+            }
+        }
+        return closest;
     }
 }

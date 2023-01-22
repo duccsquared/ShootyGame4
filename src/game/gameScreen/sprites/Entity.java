@@ -65,21 +65,6 @@ public class Entity extends Sprite {
 
 
 
-    protected Entity getClosestHostile() {
-        ArrayList<BaseObject> entityList = ObjectInstanceManager.getInstance().getArrayList(Entity.class);
-        Entity closest = null;
-        double distance = 99999999;
-        for(BaseObject object : entityList) {
-            Entity entity = (Entity) object;
-            if(entity.faction.isHostileTo(this.getFaction())) {
-                double calcDist = Global.distance(this.x(),this.y(),entity.x(),entity.y());
-                if(calcDist<distance) {
-                    closest = entity;
-                    distance = calcDist;
-                }
-            }
-        }
-        return closest;
-    }
+
 
 }

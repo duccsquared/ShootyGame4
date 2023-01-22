@@ -1,17 +1,19 @@
 package game.behaviours;
 
+import game.gameScreen.sprites.Character;
 import game.gameScreen.sprites.Entity;
 import game.gameScreen.sprites.NPC;
 
 public class DirectMelee extends Behaviour {
-    protected Entity target;
-    public DirectMelee(NPC npc,Entity target) {
+    protected Character target;
+    public DirectMelee(NPC npc,Character target) {
         super(npc);
         this.target = target;
     }
 
     @Override
     public void onTickStart() {
+
     }
 
     @Override

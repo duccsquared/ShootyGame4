@@ -20,7 +20,7 @@ public class Stabber extends Enemy {
     protected void onTickStart() {
         super.onTickStart();
         if(Global.randInt(0,10)==0) {
-            Entity hostile = this.getClosestHostile();
+            Character hostile = this.getClosestHostile();
             if(hostile!=null) {
                 double dist = Global.distance(this.x(),this.y(),hostile.x(),hostile.y());
                 if(dist<250 || attackMode && dist<400) {
