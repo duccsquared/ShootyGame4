@@ -5,6 +5,7 @@ import engine.objects.BaseObject;
 import engine.objects.Sprite;
 import engine.screens.Screen;
 import game.Faction;
+import game.Force;
 import game.Global;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class Entity extends Sprite {
     private double speedX = 0;
     private double speedY = 0;
     private Faction faction;
+    private ArrayList<Force> forceArray;
     public Entity(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2) {
         super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2);
         this.faction = Global.neutralFaction;
@@ -37,7 +39,19 @@ public class Entity extends Sprite {
         this.init();
     }
     protected void init() {
+        this.forceArray = new ArrayList<>();
         ObjectInstanceManager.getInstance().addInstance(this,Entity.class);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if(this.forceArray.size()>0) {
+            for(Force force: (ArrayList<Force>) this.forceArray.clone()) {
+                force.tick();
+            }
+        }
+
     }
 
     @Override
@@ -55,12 +69,20 @@ public class Entity extends Sprite {
     public void changeSpeedX(double speedX) {this.setSpeedX(this.getSpeedX()+speedX);}
     public void changeSpeedY(double speedY) {this.setSpeedY(this.getSpeedY()+speedY);}
     public Faction getFaction() {return faction;}
-
     protected void moveEntity() {
         this.moveX(speedX);
         this.resolveCollisionsX(Wall.class,-speedX);
         this.moveY(speedY);
         this.resolveCollisionsY(Wall.class,-speedY);
+    }
+    public void addForce(double speedX, double speedY) {
+        this.forceArray.add(new Force(this,speedX,speedY));
+    }
+    public void addForceDir(double dir, double magnitude) {
+        this.forceArray.add(new Force(magnitude,this,dir));
+    }
+    public void removeForce(Force force) {
+        this.forceArray.remove(force);
     }
 
 

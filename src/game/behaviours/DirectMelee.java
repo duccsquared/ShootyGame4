@@ -1,5 +1,6 @@
 package game.behaviours;
 
+import game.Global;
 import game.gameScreen.sprites.Character;
 import game.gameScreen.sprites.Entity;
 import game.gameScreen.sprites.NPC;
@@ -13,8 +14,13 @@ public class DirectMelee extends Behaviour {
 
     @Override
     public void onTickStart() {
-        if(this.getNpc().intersects(target)) {
-            target.damage(0.1);
+        NPC npc = this.getNpc();
+        if(npc.intersects(target)) {
+            target.damage(1);
+            double dir = Global.coorToDir(npc.x(),npc.y(),target.x(),target.y());
+            target.addForceDir(dir,10);
+            npc.addForceDir(dir+180,10);
+
         }
     }
 

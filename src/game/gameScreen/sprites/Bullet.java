@@ -46,6 +46,7 @@ public class Bullet extends Entity {
         if(intersectingChara!=null && this.getFaction().isHostileTo(intersectingChara)) {
             this.delete();
             intersectingChara.damage(this.damage);
+            intersectingChara.addForceDir(Global.coorToDir(this.x(),this.y(),intersectingChara.x(),intersectingChara.y()),10);
         }
     }
 }
