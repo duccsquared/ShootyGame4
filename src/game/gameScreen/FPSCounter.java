@@ -17,7 +17,7 @@ public class FPSCounter {
     private double prevTime;
     public FPSCounter(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
-        fpsText = Text.newInstance(gameScreen,"FPS: XX",20,20,40,-1,-1);
+        fpsText = Text.newInstance(gameScreen,"       ",5,5,30,-1,-1);
         prevTime = System.nanoTime();
     }
     public void tick() {

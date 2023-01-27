@@ -20,7 +20,9 @@ public class GameScreen extends BaseScreen {
     public final int MIN_Y = -800;
     public final int MAX_X = 1200;
     public final int MAX_Y = 800;
-    public final int MARGIN = 400;    Player player;
+    public final int MARGIN = 400;
+    Player player;
+    FPSCounter fpsCounter;
     public GameScreen() {
         super(id);
         player = new Player(this,-600,-600);
@@ -72,6 +74,8 @@ public class GameScreen extends BaseScreen {
                 height = Global.randInt(64,128);
             }
             new Wall(this,posX,posY,posX+width,posY+height);
+
+            this.fpsCounter = new FPSCounter(this);
         }
     }
 
@@ -89,6 +93,7 @@ public class GameScreen extends BaseScreen {
     public void tick() {
         handleEnemySpawns();
         super.tick();
+        this.fpsCounter.tick();
     }
 
     public void handleEnemySpawns() {
