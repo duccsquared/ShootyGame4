@@ -100,7 +100,7 @@ public class GameScreen extends BaseScreen {
         ArrayList<BaseObject> enemyArray = ObjectInstanceManager.getInstance().getArrayList(Enemy.class);
         int enemyCount = enemyArray.size();
 
-        if(enemyCount<5 && Global.randInt(0,100)==0) {
+        if(enemyCount<1 && Global.randInt(0,100)==0) {
             new Stabber(this,Global.randInt(-350,1180),Global.randInt(-768,768));
         }
     }

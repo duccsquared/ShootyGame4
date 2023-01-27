@@ -56,14 +56,19 @@ public class NPC extends Character {
         if(this.targetX!=this.currentTargetX || this.targetY!=this.currentTargetY) {
             this.currentTargetX = this.targetX;
             this.currentTargetY = this.targetY;
-            double[] coords = Global.dirToCoor(Global.coorToDir(this.x(),this.y(),this.targetX,this.targetY));
-            this.setSpeedX(coords[0]*this.getSpeed());
-            this.setSpeedY(coords[1]*this.getSpeed());
+            if(Math.abs(this.targetX - this.x())>this.getSpeed() || Math.abs(this.targetY - this.y())>this.getSpeed()) {
+                double[] coords = Global.dirToCoor(Global.coorToDir(this.x(),this.y(),this.targetX,this.targetY));
+                this.setSpeedX(coords[0]*this.getSpeed());
+                this.setSpeedY(coords[1]*this.getSpeed());
+            }
+            else {
+                this.setSpeedX(0);
+                this.setSpeedY(0);
+            }
         }
-        else if(Math.abs(this.targetX - this.x())<this.getSpeed() && Math.abs(this.targetY - this.y())<this.getSpeed())  {
-            double[] coords = Global.dirToCoor(Global.coorToDir(this.x(),this.y(),this.targetX,this.targetY));
-            this.setSpeedX(coords[0]*this.getSpeed());
-            this.setSpeedY(coords[1]*this.getSpeed());
+        else if(Math.abs(this.targetX - this.x())<=this.getSpeed() && Math.abs(this.targetY - this.y())<=this.getSpeed())  {
+            this.setSpeedX(0);
+            this.setSpeedY(0);
         }
         super.moveEntity();
     }

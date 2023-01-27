@@ -11,11 +11,25 @@ public class DirectMelee extends Behaviour {
         super(npc);
         this.target = target;
     }
+    public DirectMelee(NPC npc) {
+        super(npc);
+        this.target = this.getNpc().getClosestHostile();
+    }
+
+    public Character getTarget() {
+        return target;
+    }
 
     @Override
     public void onTickStart() {
         NPC npc = this.getNpc();
-        if(npc.intersects(target)) {
+        if(this.target==null) {
+            this.target = npc.getClosestHostile();
+        }
+        else if(this.target.getHp()<=0) {
+            this.target = null;
+        }
+        else if(npc.intersects(target)) {
             target.damage(1);
             double dir = Global.coorToDir(npc.x(),npc.y(),target.x(),target.y());
             target.addForceDir(dir,10);
@@ -31,7 +45,13 @@ public class DirectMelee extends Behaviour {
     @Override
     public void calculateTarget() {
         NPC npc = this.getNpc();
-        npc.setTargetX(this.target.x());
-        npc.setTargetY(this.target.y());
+        if(this.target!=null) {
+            npc.setTargetX(this.target.x());
+            npc.setTargetY(this.target.y());
+        }
+        else {
+            npc.setTargetX(npc.x());
+            npc.setTargetY(npc.y());
+        }
     }
 }

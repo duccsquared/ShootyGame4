@@ -38,6 +38,13 @@ public class Stabber extends Enemy {
                     }
                 }
             }
+            else {
+                if(attackMode==true) {
+                    this.setBehaviour(new Wander(this));
+                    this.setSpeed(WANDER_SPEED);
+                    this.attackMode = false;
+                }
+            }
 
         }
     }

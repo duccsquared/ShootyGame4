@@ -70,7 +70,7 @@ public class Character extends Entity {
         super.paint(g2d);
     }
 
-    protected Character getClosestHostile() {
+    public Character getClosestHostile() {
         ArrayList<BaseObject> entityList = ObjectInstanceManager.getInstance().getArrayList(Character.class);
         Character closest = null;
         double distance = 99999999;
