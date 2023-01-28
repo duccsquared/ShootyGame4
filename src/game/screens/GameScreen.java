@@ -2,6 +2,7 @@ package game.screens;
 
 import engine.managers.ObjectInstanceManager;
 import engine.objects.BaseObject;
+import engine.objects.Text;
 import engine.screens.BaseScreen;
 import engine.utils.Mouse;
 import game.Faction;
@@ -21,6 +22,8 @@ public class GameScreen extends BaseScreen {
     public final int MAX_X = 1200;
     public final int MAX_Y = 800;
     public final int MARGIN = 400;
+    public double coins = 0;
+    private Text coinText;
     Player player;
     FPSCounter fpsCounter;
     public GameScreen() {
@@ -75,7 +78,9 @@ public class GameScreen extends BaseScreen {
             }
             new Wall(this,posX,posY,posX+width,posY+height);
 
+            // UI text
             this.fpsCounter = new FPSCounter(this);
+            this.coinText = Text.newInstance(this,"         ",5,20,40,-1,-1);
         }
     }
 
@@ -94,13 +99,14 @@ public class GameScreen extends BaseScreen {
         handleEnemySpawns();
         super.tick();
         this.fpsCounter.tick();
+        this.coinText.setString(String.format("coins: %.0f",this.coins));
     }
 
     public void handleEnemySpawns() {
         ArrayList<BaseObject> enemyArray = ObjectInstanceManager.getInstance().getArrayList(Enemy.class);
         int enemyCount = enemyArray.size();
 
-        if(enemyCount<1 && Global.randInt(0,100)==0) {
+        if(enemyCount<5 && Global.randInt(0,100)==0) {
             new Stabber(this,Global.randInt(-350,1180),Global.randInt(-768,768));
         }
     }
