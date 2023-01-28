@@ -22,6 +22,9 @@ public class Player extends Character {
         if(Key.held(Key.D)) {this.changeSpeedX(this.speed);}
         this.moveEntity();
         if(cooldown>0) {cooldown -= 1;}
+        if(Key.pressed(Key.O) && cooldown<=0) {
+            new Soldier(this.getScreen(),this.x(),this.y());
+        }
     }
     public void onLeftHeld() {
         if(cooldown<=0) {

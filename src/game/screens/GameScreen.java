@@ -35,6 +35,7 @@ public class GameScreen extends BaseScreen {
         this.getCamera().setY(-920);
         this.getCamera().attachObject(player);
         Faction.setAsHostile(Global.playerFaction,Global.enemyFaction);
+        Faction.setAsHostile(Global.allyFaction,Global.enemyFaction);
 
         // map borders
 
