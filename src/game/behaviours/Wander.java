@@ -27,7 +27,7 @@ public class Wander extends Behaviour {
         this.ticksSinceLastTargetSwitch += 1;
         if(npc.getDistanceFromTarget()<50 || ticksSinceLastTargetSwitch>=ticksToNextTargetSwitch) {
             npc.setTargetX(Global.limitMinMax(Global.randInt(npc.x1()-100,npc.x2()+100),gameScreen.MIN_X,gameScreen.MAX_X));
-            npc.setTargetY(Global.limitMinMax(Global.randInt(npc.y1()-100,npc.x2()+100),gameScreen.MIN_Y,gameScreen.MAX_Y));
+            npc.setTargetY(Global.limitMinMax(Global.randInt(npc.y1()-100,npc.y2()+100),gameScreen.MIN_Y,gameScreen.MAX_Y));
             this.ticksToNextTargetSwitch = Global.secondsToTicks(Global.randRange(5,8));
             this.ticksSinceLastTargetSwitch = 0;
         }
