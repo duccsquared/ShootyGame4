@@ -3,9 +3,8 @@ package game.gameScreen.sprites;
 import engine.screens.Screen;
 import game.Global;
 import game.behaviours.DirectMelee;
+import game.behaviours.IdleAttackInRange;
 import game.behaviours.Wander;
-import game.behaviours.WanderMelee;
-import game.screens.GameScreen;
 
 public class Stabber extends Enemy {
     public static final double HALF_SIZE = 16;
@@ -16,6 +15,6 @@ public class Stabber extends Enemy {
 
     public Stabber(Screen screen, double x, double y) {
         super(screen, 250,100,100,250,100,100, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE, 4,WANDER_SPEED,5);
-        this.setBehaviour(new WanderMelee(this,WANDER_SPEED,ATTACK_SPEED,AGGRO_RANGE,DE_AGGRO_RANGE));
+        this.setBehaviour(new IdleAttackInRange(this,new Wander(this),new DirectMelee(this),WANDER_SPEED,ATTACK_SPEED,AGGRO_RANGE,DE_AGGRO_RANGE));
     }
 }

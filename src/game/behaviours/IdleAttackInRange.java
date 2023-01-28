@@ -4,29 +4,32 @@ import game.Global;
 import game.gameScreen.sprites.Character;
 import game.gameScreen.sprites.NPC;
 
-public class WanderMelee extends Behaviour {
+public class IdleAttackInRange extends Behaviour {
     private Behaviour subBehaviour;
     private boolean attackMode = false;
-    private double wanderSpeed;
+    private Behaviour idleBehaviour;
+    private Behaviour attackBehaviour;
+    private double idleSpeed;
     private double attackSpeed;
     private double aggroRange;
     private double deAggroRange;
-    private Character hostile = null;
 
-    public WanderMelee(NPC npc, double wanderSpeed, double attackSpeed, double aggroRange, double deAggroRange) {
+    public IdleAttackInRange(NPC npc, Behaviour idleBehaviour, Behaviour attackBehaviour, double idleSpeed, double attackSpeed, double aggroRange, double deAggroRange) {
         super(npc);
-        this.wanderSpeed = wanderSpeed;
+        this.idleBehaviour = idleBehaviour;
+        this.attackBehaviour = attackBehaviour;
+        this.idleSpeed = idleSpeed;
         this.attackSpeed = attackSpeed;
         this.aggroRange = aggroRange;
         this.deAggroRange = deAggroRange;
-        this.subBehaviour = new Wander(npc);
+        this.subBehaviour = this.idleBehaviour;
     }
 
     @Override
     public void onTickStart() {
         NPC npc = this.getNpc();
         if (Global.randInt(0, 10) == 0) {
-            hostile = npc.getClosestHostile();
+            Character hostile = npc.getClosestHostile();
             if (hostile != null) {
                 double dist = Global.distance(npc.x(), npc.y(), hostile.x(), hostile.y());
                 this.setAttackMode(dist < this.aggroRange || attackMode && dist < this.deAggroRange);
@@ -41,12 +44,12 @@ public class WanderMelee extends Behaviour {
         if(attackMode==this.attackMode) {return;}
         this.attackMode = attackMode;
         if(this.attackMode) {
-            this.subBehaviour = new DirectMelee(npc, hostile);
+            this.subBehaviour = this.attackBehaviour;
             npc.setSpeed(this.attackSpeed);
         }
         else {
-            this.subBehaviour = new Wander(npc);
-            npc.setSpeed(this.wanderSpeed);
+            this.subBehaviour = this.idleBehaviour;
+            npc.setSpeed(this.idleSpeed);
         }
 
 
