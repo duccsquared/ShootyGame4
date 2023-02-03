@@ -8,10 +8,7 @@ import engine.utils.Mouse;
 import game.Faction;
 import game.Global;
 import game.gameScreen.FPSCounter;
-import game.gameScreen.sprites.Enemy;
-import game.gameScreen.sprites.Player;
-import game.gameScreen.sprites.Stabber;
-import game.gameScreen.sprites.Wall;
+import game.gameScreen.sprites.*;
 
 import java.util.ArrayList;
 
@@ -108,7 +105,12 @@ public class GameScreen extends BaseScreen {
         int enemyCount = enemyArray.size();
 
         if(enemyCount<5 && Global.randInt(0,100)==0) {
-            new Stabber(this,Global.randInt(-350,1180),Global.randInt(-768,768));
+            if(Global.randInt(0,1)==0) {
+                new Stabber(this,Global.randInt(-350,1180),Global.randInt(-768,768));
+            }
+            else {
+                new Shooter(this,Global.randInt(-350,1180),Global.randInt(-768,768));
+            }
         }
     }
 }

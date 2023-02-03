@@ -7,18 +7,10 @@ import game.Global;
 import game.behaviours.Behaviour;
 
 public class NPC extends Character {
-    private double currentTargetX;
-    private double currentTargetY;
-    private double targetX;
-    private double targetY;
     private double speed;
     private Behaviour behaviour = null;
     public NPC(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2,double maxHp, double speed, Faction faction) {
         super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2, maxHp, faction);
-        this.targetX = this.x();
-        this.targetY = this.y();
-        this.currentTargetX = this.targetX;
-        this.currentTargetY = this.targetY;
         this.speed = speed;
         ObjectInstanceManager.getInstance().addInstance(this,Enemy.class);
     }
@@ -29,12 +21,8 @@ public class NPC extends Character {
     }
 
     public double getSpeed() {return speed;}
-    public double getTargetX() {return targetX;}
-    public double getTargetY() {return targetY;}
     public Behaviour getBehaviour() {return behaviour;}
     public void setSpeed(double speed) {this.speed = speed;}
-    public void setTargetX(double targetX) {this.targetX = targetX;}
-    public void setTargetY(double targetY) {this.targetY = targetY;}
     public void setBehaviour(Behaviour behaviour) {this.behaviour = behaviour;}
     @Override
     public void tick() {
@@ -51,35 +39,11 @@ public class NPC extends Character {
         if(this.behaviour!=null) {this.behaviour.calculateTarget();}
     }
 
-    @Override
-    protected void moveEntity() {
-        if(this.targetX!=this.currentTargetX || this.targetY!=this.currentTargetY) {
-            this.currentTargetX = this.targetX;
-            this.currentTargetY = this.targetY;
-            if(Math.abs(this.targetX - this.x())>this.getSpeed() || Math.abs(this.targetY - this.y())>this.getSpeed()) {
-                double[] coords = Global.dirToCoor(Global.coorToDir(this.x(),this.y(),this.targetX,this.targetY));
-                this.setSpeedX(coords[0]*this.getSpeed());
-                this.setSpeedY(coords[1]*this.getSpeed());
-            }
-            else {
-                this.setSpeedX(0);
-                this.setSpeedY(0);
-            }
-        }
-        else if(Math.abs(this.targetX - this.x())<=this.getSpeed() && Math.abs(this.targetY - this.y())<=this.getSpeed())  {
-            this.setSpeedX(0);
-            this.setSpeedY(0);
-        }
-        super.moveEntity();
-    }
-
     protected void onTickEnd() {
         if(this.behaviour!=null) {this.behaviour.onTickEnd();}
     }
 
-    public double getDistanceFromTarget() {
-        return Global.distance(this.x(),this.y(),this.getTargetX(),this.getTargetY());
-    }
+
 
 
 }

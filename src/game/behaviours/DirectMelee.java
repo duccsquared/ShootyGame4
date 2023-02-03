@@ -6,18 +6,38 @@ import game.gameScreen.sprites.Entity;
 import game.gameScreen.sprites.NPC;
 
 public class DirectMelee extends Behaviour {
+    private double currentTargetX;
+    private double currentTargetY;
+    private double targetX;
+    private double targetY;
     protected Character target;
     public DirectMelee(NPC npc,Character target) {
         super(npc);
         this.target = target;
+        this.targetX = npc.x();
+        this.targetY = npc.y();
+        this.currentTargetX = this.targetX;
+        this.currentTargetY = this.targetY;
     }
     public DirectMelee(NPC npc) {
         super(npc);
         this.target = this.getNpc().getClosestHostile();
+        this.targetX = npc.x();
+        this.targetY = npc.y();
+        this.currentTargetX = this.targetX;
+        this.currentTargetY = this.targetY;
     }
 
     public Character getTarget() {
         return target;
+    }
+
+    public void setTargetX(double targetX) {
+        this.targetX = targetX;
+    }
+
+    public void setTargetY(double targetY) {
+        this.targetY = targetY;
     }
 
     @Override
@@ -36,6 +56,11 @@ public class DirectMelee extends Behaviour {
             npc.addForceDir(dir+180,10);
 
         }
+        if(this.currentTargetX!=this.targetX || this.currentTargetY!=this.targetY || this.target==null) {
+            this.currentTargetX = this.targetX;
+            this.currentTargetY = this.targetY;
+            this.targetToSpeed(this.targetX,this.targetY);
+        }
     }
 
     @Override
@@ -46,12 +71,12 @@ public class DirectMelee extends Behaviour {
     public void calculateTarget() {
         NPC npc = this.getNpc();
         if(this.target!=null) {
-            npc.setTargetX(this.target.x());
-            npc.setTargetY(this.target.y());
+            this.setTargetX(this.target.x());
+            this.setTargetY(this.target.y());
         }
         else {
-            npc.setTargetX(npc.x());
-            npc.setTargetY(npc.y());
+            this.setTargetX(npc.x());
+            this.setTargetY(npc.y());
         }
     }
 }
