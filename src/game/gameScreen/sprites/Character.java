@@ -13,32 +13,36 @@ public class Character extends Entity {
     private double maxHp = 1;
     private double hp = 1;
     protected HPBar hpBar;
-
+    private double contactDamage = 0;
 
     public Character(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2, double maxHp) {
         super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2);
-        this.init2(maxHp);
+        this.init2(maxHp,0);
     }
 
     public Character(Screen screen, String imgPath, double x1, double y1, double x2, double y2, double maxHp) {
         super(screen, imgPath, x1, y1, x2, y2);
-        this.init2(maxHp);
+        this.init2(maxHp,0);
     }
 
     public Character(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2, double maxHp, Faction faction) {
         super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2, faction);
-        this.init2(maxHp);
+        this.init2(maxHp,0);
     }
-
+    public Character(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2, double maxHp, double contactDamage, Faction faction) {
+        super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2, faction);
+        this.init2(maxHp,contactDamage);
+    }
     public Character(Screen screen, String imgPath, double x1, double y1, double x2, double y2, double maxHp, Faction faction) {
         super(screen, imgPath, x1, y1, x2, y2, faction);
-        this.init2(maxHp);
+        this.init2(maxHp,0);
     }
 
-    protected void init2(double maxHp) {
+    protected void init2(double maxHp, double contactDamage) {
         this.hpBar = new HPBar(this);
         this.setMaxHp(maxHp);
         this.setHp(maxHp);
+        this.setContactDamage(contactDamage);
         ObjectInstanceManager.getInstance().addInstance(this,Character.class);
     }
 
@@ -55,6 +59,8 @@ public class Character extends Entity {
     public void setHp(double hp) {this.hp = hp;}
     public void damage(double hp) {this.hp -= hp;}
     public void heal(double hp) {this.hp += hp;}
+    public double getContactDamage() {return contactDamage;}
+    public void setContactDamage(double contactDamage) {this.contactDamage = contactDamage;}
 
     @Override
     public void tick() {

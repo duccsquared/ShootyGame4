@@ -14,7 +14,7 @@ public class Shooter extends Enemy {
     private final static double AGGRO_RANGE = 250;
     private final static double DE_AGGRO_RANGE = 450;
     public Shooter(Screen screen, double x, double y) {
-        super(screen, 200,100,100,250,100,100, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE, 4,WANDER_SPEED,5);
+        super(screen, 200,100,100,250,100,100, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE, 4,WANDER_SPEED,0,5);
         this.setBehaviour(new RangedStrafe(this));
         this.setBehaviour(
                         new IdleAttackInRange(this,new Wander(this),

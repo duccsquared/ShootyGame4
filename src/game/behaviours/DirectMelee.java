@@ -50,7 +50,8 @@ public class DirectMelee extends Behaviour {
             this.target = null;
         }
         else if(npc.intersects(target)) {
-            target.damage(1);
+            target.damage(npc.getContactDamage());
+            npc.damage(target.getContactDamage());
             double dir = Global.coorToDir(npc.x(),npc.y(),target.x(),target.y());
             target.addForceDir(dir,10);
             npc.addForceDir(dir+180,10);
