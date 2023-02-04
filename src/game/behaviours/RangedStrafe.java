@@ -23,6 +23,12 @@ public class RangedStrafe extends Behaviour {
     }
 
     @Override
+    public void onDamage(double hp) {
+        super.onDamage(hp);
+        if(hp>=1 || Global.randInt(0,4)==0) {this.target = this.getNpc().getClosestHostile();};
+    }
+
+    @Override
     public void onTickStart() {
         if(this.cooldown>0) {this.cooldown-=1;}
         if(this.target==null) {

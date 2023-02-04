@@ -26,6 +26,13 @@ public class IdleAttackInRange extends Behaviour {
     }
 
     @Override
+    public void onDamage(double hp) {
+        super.onDamage(hp);
+        this.subBehaviour.onDamage(hp);
+        this.setAttackMode(true);
+    }
+
+    @Override
     public void onTickStart() {
         NPC npc = this.getNpc();
         if (Global.randInt(0, 10) == 0) {

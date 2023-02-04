@@ -14,6 +14,7 @@ public abstract class Behaviour {
     public abstract void onTickStart();
     public abstract void onTickEnd();
     public abstract void calculateTarget();
+    public void onDamage(double hp) {}
 
     public NPC getNpc() {
         return npc;

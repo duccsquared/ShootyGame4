@@ -41,6 +41,12 @@ public class DirectMelee extends Behaviour {
     }
 
     @Override
+    public void onDamage(double hp) {
+        super.onDamage(hp);
+        if(hp>=1 || Global.randInt(0,4)==0) {this.target = this.getNpc().getClosestHostile();};
+    }
+
+    @Override
     public void onTickStart() {
         NPC npc = this.getNpc();
         if(this.target==null) {

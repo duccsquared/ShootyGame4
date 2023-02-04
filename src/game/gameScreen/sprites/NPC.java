@@ -48,7 +48,9 @@ public class NPC extends Character {
         if(this.behaviour!=null) {this.behaviour.onTickEnd();}
     }
 
-
-
-
+    @Override
+    public void damage(double hp) {
+        super.damage(hp);
+        if(this.behaviour!=null) {this.behaviour.onDamage(hp);}
+    }
 }
