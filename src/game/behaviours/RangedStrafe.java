@@ -4,19 +4,35 @@ import game.Global;
 import game.gameScreen.sprites.Bullet;
 import game.gameScreen.sprites.Character;
 import game.gameScreen.sprites.NPC;
+import game.gameScreen.sprites.NPCTurret;
+
 public class RangedStrafe extends Behaviour {
     private int cooldown = 60;
     private Character target;
+    private NPCTurret npcTurret;
     public RangedStrafe(NPC npc, Character target) {
         super(npc);
         this.target = target;
+        this.npcTurret = null;
+    }
+
+    public RangedStrafe(NPC npc, Character target, NPCTurret npcTurret) {
+        super(npc);
+        this.target = target;
+        this.npcTurret = npcTurret;
     }
 
     public RangedStrafe(NPC npc) {
         super(npc);
         this.target = this.getNpc().getClosestHostile();
+        this.npcTurret = null;
     }
 
+    public RangedStrafe(NPC npc,NPCTurret npcTurret) {
+        super(npc);
+        this.target = this.getNpc().getClosestHostile();
+        this.npcTurret = npcTurret;
+    }
 
     public Character getTarget() {
         return target;
@@ -38,9 +54,12 @@ public class RangedStrafe extends Behaviour {
             this.target = null;
         }
         else  {
+            if(this.npcTurret!=null) {
+                this.npcTurret.setAngleFromTarget(this.target.x(),this.target.y());
+            }
             if(this.cooldown==0) {
                 this.cooldown = 60;
-                new Bullet(this.getNpc().getScreen(),200,0,0,200,0,0,this.getNpc().x(),this.getNpc().y(),target.x(),target.y(),this.getNpc().getFaction());
+                new Bullet(this.getNpc().getScreen(),"res/BulletRed.png",this.getNpc().x(),this.getNpc().y(),target.x(),target.y(),this.getNpc().getFaction());
             }
         }
     }

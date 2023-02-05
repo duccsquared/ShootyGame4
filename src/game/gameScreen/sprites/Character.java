@@ -29,8 +29,8 @@ public class Character extends Entity {
         super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2, faction);
         this.init2(maxHp,0);
     }
-    public Character(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2, double maxHp, double contactDamage, Faction faction) {
-        super(screen, r, g, b, borderR, borderG, borderB, x1, y1, x2, y2, faction);
+    public Character(Screen screen, String imgPath, double x1, double y1, double x2, double y2, double maxHp, double contactDamage, Faction faction) {
+        super(screen, imgPath, x1, y1, x2, y2, faction);
         this.init2(maxHp,contactDamage);
     }
     public Character(Screen screen, String imgPath, double x1, double y1, double x2, double y2, double maxHp, Faction faction) {

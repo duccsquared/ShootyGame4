@@ -19,6 +19,7 @@ public class GameScreen extends BaseScreen {
     public final int MAX_X = 1200;
     public final int MAX_Y = 800;
     public final int MARGIN = 400;
+    public final int BASE_WALL_HUE = 100;
     public double coins = 0;
     private Text coinText;
     Player player;
@@ -37,21 +38,21 @@ public class GameScreen extends BaseScreen {
         // map borders
 
 
-        new Wall(this, MIN_X-MARGIN, MIN_Y, MIN_X, MAX_Y);
-        new Wall(this, MAX_X, MIN_Y, MAX_X+MARGIN, MAX_Y);
-        new Wall(this, MIN_X-MARGIN, MIN_Y-MARGIN, MAX_X+MARGIN, MIN_Y);
-        new Wall(this, MIN_X-MARGIN, MAX_Y, MAX_X+MARGIN, MAX_Y+MARGIN);
+        new Wall(this,BASE_WALL_HUE, MIN_X-MARGIN, MIN_Y, MIN_X, MAX_Y);
+        new Wall(this,BASE_WALL_HUE, MAX_X, MIN_Y, MAX_X+MARGIN, MAX_Y);
+        new Wall(this,BASE_WALL_HUE, MIN_X-MARGIN, MIN_Y-MARGIN, MAX_X+MARGIN, MIN_Y);
+        new Wall(this,BASE_WALL_HUE, MIN_X-MARGIN, MAX_Y, MAX_X+MARGIN, MAX_Y+MARGIN);
 
         // starting area borders
-        new Wall(this, -400, -800, -368, -400);
-        new Wall(this, -800, -400, -620, -368);
-        new Wall(this, -580, -400, -368, -368);
+        new Wall(this,BASE_WALL_HUE, -400, -800, -368, -400);
+        new Wall(this,BASE_WALL_HUE, -800, -400, -620, -368);
+        new Wall(this,BASE_WALL_HUE, -580, -400, -368, -368);
 
         // area 1
         for(int i = 0; i < 40; i++) {
             int posX = Global.randInt(-350,0);
             int posY = Global.randInt(-768,768);
-            new Wall(this,posX,posY);
+            new Wall(this,BASE_WALL_HUE+Global.randInt(-20,20),posX,posY);
         }
         // area 2
         for(int i = 0; i < 20; i++) {
@@ -59,7 +60,7 @@ public class GameScreen extends BaseScreen {
             int posY = Global.randInt(-768,768);
             int width = Global.randInt(32,96);
             int height = Global.randInt(32,96);
-            new Wall(this,posX,posY,posX+width,posY+height);
+            new Wall(this,BASE_WALL_HUE+Global.randInt(-20,20),posX,posY,posX+width,posY+height);
         }
         // area 3
         for(int i = 0; i < 20; i++) {
@@ -74,7 +75,7 @@ public class GameScreen extends BaseScreen {
                 width = Global.randInt(16,48);
                 height = Global.randInt(64,128);
             }
-            new Wall(this,posX,posY,posX+width,posY+height);
+            new Wall(this,BASE_WALL_HUE+Global.randInt(-20,20),posX,posY,posX+width,posY+height);
 
             // UI text
             this.fpsCounter = new FPSCounter(this);

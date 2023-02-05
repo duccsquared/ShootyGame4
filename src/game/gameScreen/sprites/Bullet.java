@@ -12,16 +12,16 @@ public class Bullet extends Entity {
     private double startY;
     private double speed = Global.convertSpeedInSecondsToTicks(300);
     private double damage;
-    public Bullet(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x, double y, double dir, Faction faction) {
-        super(screen, r, g, b, borderR, borderG, borderB, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,faction);
+    public Bullet(Screen screen, String imgPath, double x, double y, double dir, Faction faction) {
+        super(screen, imgPath, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,faction);
         this.init(dir,1);
     }
-    public Bullet(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x, double y, double targetX, double targetY, Faction faction) {
-        super(screen, r, g, b, borderR, borderG, borderB, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,faction);
+    public Bullet(Screen screen, String imgPath, double x, double y, double targetX, double targetY, Faction faction) {
+        super(screen, imgPath, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,faction);
         this.init(Global.coorToDir(this.x(),this.y(),targetX,targetY),1);
     }
-    public Bullet(Screen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x, double y, double targetX, double targetY, double damage,Faction faction) {
-        super(screen, r, g, b, borderR, borderG, borderB, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,faction);
+    public Bullet(Screen screen, String imgPath, double x, double y, double targetX, double targetY, double damage,Faction faction) {
+        super(screen, imgPath, x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE,faction);
         this.init(Global.coorToDir(this.x(),this.y(),targetX,targetY),damage);
     }
 
