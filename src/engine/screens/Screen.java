@@ -24,6 +24,7 @@ public abstract class Screen {
     public void addSubScreen(SubScreen subScreen) {
         this.subScreenArray.add(subScreen);
     }
+    public void removeSubScreen(SubScreen subScreen) {this.subScreenArray.remove(subScreen);}
     public void setId(String id) {this.id = id;}
     public Screen(String id) {
         this.setId(id);

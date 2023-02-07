@@ -13,6 +13,7 @@ public class StartGameButton extends Button {
 
     @Override
     public void onClick() {
+        App.getInstance().getPanel().registerScreen(new GameScreen());
         App.getInstance().getPanel().setCurrentScreen(GameScreen.id);
     }
 }

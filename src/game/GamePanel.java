@@ -15,7 +15,7 @@ public class GamePanel extends Panel {
     @Override
     public void start() {
         this.registerScreen(new MainMenuScreen());
-        this.registerScreen(new GameScreen());
+//        this.registerScreen(new GameScreen());
         this.setCurrentScreen(MainMenuScreen.id);
     }
 

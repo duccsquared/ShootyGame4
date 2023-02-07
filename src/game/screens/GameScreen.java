@@ -24,6 +24,11 @@ public class GameScreen extends BaseScreen {
     private Text coinText;
     Player player;
     FPSCounter fpsCounter;
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     public GameScreen() {
         super(id);
         player = new Player(this,-600,-600);
@@ -97,6 +102,7 @@ public class GameScreen extends BaseScreen {
     public void tick() {
         handleEnemySpawns();
         super.tick();
+        handlePlayerDeath();
         this.fpsCounter.tick();
         this.coinText.setString(String.format("coins: %.0f",this.coins));
     }
@@ -113,5 +119,16 @@ public class GameScreen extends BaseScreen {
                 new Shooter(this,Global.randInt(-350,1180),Global.randInt(-768,768));
             }
         }
+    }
+
+    public void handlePlayerDeath() {
+        if(this.player==null) {
+
+        }
+        else if(this.player.getHp()<=0) {
+            this.player = null;
+            this.addSubScreen(new GameOverSubscreen("gameOver",this));
+        }
+
     }
 }

@@ -9,21 +9,26 @@ import java.awt.*;
 
 public abstract class SubScreen extends Screen {
     private Sprite bgSprite;
+    private BaseScreen parentScreen;
     public SubScreen(String id, BaseScreen screen, double x1, double y1, double x2, double y2) {
         super(id,screen); bgSprite = new ConcreteSprite(screen,new EmptyDraw(),x1,y1,x2,y2);
         bgSprite.setFixedPos(true);
+        this.parentScreen = screen;
     }
     public SubScreen(String id, BaseScreen screen, Color color, Color borderColor, double x1, double y1, double x2, double y2) {
         super(id,screen); bgSprite = new ConcreteSprite(screen,color,borderColor,x1,y1,x2,y2);
         bgSprite.setFixedPos(true);
+        this.parentScreen = screen;
     }
     public SubScreen(String id, BaseScreen screen, int r, int g, int b, int borderR, int borderG, int borderB, double x1, double y1, double x2, double y2)  {
         super(id,screen); bgSprite = new ConcreteSprite(screen,r,g,b,borderR,borderG,borderB,x1,y1,x2,y2);
         bgSprite.setFixedPos(true);
+        this.parentScreen = screen;
     }
     public SubScreen(String id, BaseScreen screen, String imgPath, double x1, double y1, double x2, double y2)  {
         super(id,screen); bgSprite = new ConcreteSprite(screen,imgPath,x1,y1,x2,y2);
         bgSprite.setFixedPos(true);
+        this.parentScreen = screen;
     }
     public double x() {return bgSprite.x();}
     public double y() {return bgSprite.y();}
@@ -80,5 +85,10 @@ public abstract class SubScreen extends Screen {
 
     public boolean intersects(double x, double y) {
         return x >= this.x1() && y >= this.y1() && x <= this.x2() && y <= this.y2();
+    }
+
+    public void delete() {
+        this.bgSprite.delete();
+        this.parentScreen.removeSubScreen(this);
     }
 }
