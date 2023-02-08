@@ -17,8 +17,9 @@ public abstract class Enemy extends NPC {
     public void delete() {
         super.delete();
         if(this.getScreen() instanceof GameScreen) {
-            ((GameScreen) this.getScreen()).coins += this.coinsOnDeath;
+            GameScreen gameScreen = (GameScreen) this.getScreen();
+            gameScreen.coins += this.coinsOnDeath;
+            gameScreen.addSpawnExp(this.coinsOnDeath);
         }
     }
-
 }

@@ -4,6 +4,7 @@ import engine.managers.ObjectInstanceManager;
 import engine.objects.BaseObject;
 import engine.objects.Text;
 import engine.screens.BaseScreen;
+import engine.utils.Key;
 import engine.utils.Mouse;
 import game.Faction;
 import game.Global;
@@ -24,13 +25,26 @@ public class GameScreen extends BaseScreen {
     private Text coinText;
     Player player;
     FPSCounter fpsCounter;
-
+    private double spawnExp;
+    private int spawnLevel;
+    public void addSpawnExp(double spawnExp) {
+        this.spawnExp += spawnExp;
+        double threshold = 50 * spawnLevel;
+        if(this.spawnExp>=threshold) {
+            this.spawnLevel += 1;
+            this.spawnExp -= threshold;
+        }
+    }
     public void setPlayer(Player player) {
         this.player = player;
     }
 
     public GameScreen() {
         super(id);
+
+        this.spawnExp = 0;
+        this.spawnLevel = 1;
+
         player = new Player(this,-600,-600);
 
         new Stabber(this,200,200);
@@ -110,8 +124,8 @@ public class GameScreen extends BaseScreen {
     public void handleEnemySpawns() {
         ArrayList<BaseObject> enemyArray = ObjectInstanceManager.getInstance().getArrayList(Enemy.class);
         int enemyCount = enemyArray.size();
-
-        if(enemyCount<5 && Global.randInt(0,100)==0) {
+        int enemyLimit = this.spawnLevel + 4;
+        if(enemyCount<enemyLimit && Global.randInt(0,(int) (400*(((double)enemyCount)/enemyLimit)))==0) {
             if(Global.randInt(0,1)==0) {
                 new Stabber(this,Global.randInt(-350,1180),Global.randInt(-768,768));
             }
