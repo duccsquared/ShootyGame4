@@ -65,6 +65,7 @@ public class GameScreen extends BaseScreen {
         // starting area borders
         new Wall(this,BASE_WALL_HUE, -400, -800, -368, -400);
         new Wall(this,BASE_WALL_HUE, -800, -400, -620, -368);
+        new FactionDoor(this,"res/TransBoxBlue.png", -620, -400, -580, -368,Global.playerFaction);
         new Wall(this,BASE_WALL_HUE, -580, -400, -368, -368);
 
         // area 1

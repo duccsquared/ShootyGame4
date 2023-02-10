@@ -71,8 +71,10 @@ public class Entity extends Sprite {
     public Faction getFaction() {return faction;}
     protected void moveEntity() {
         this.moveX(speedX);
+        this.resolveCollisionsFactionDoorX(-speedX);
         this.resolveCollisionsX(Wall.class,-speedX);
         this.moveY(speedY);
+        this.resolveCollisionsFactionDoorY(-speedY);
         this.resolveCollisionsY(Wall.class,-speedY);
     }
     public void addForce(double speedX, double speedY) {
@@ -85,7 +87,32 @@ public class Entity extends Sprite {
         this.forceArray.remove(force);
     }
 
-
+    public void resolveCollisionsFactionDoorX(double dirX) {
+        ArrayList<BaseObject> objectArray = ObjectInstanceManager.getInstance().getArrayList(FactionDoor.class,this.getScreen());
+        if(dirX==0){return;}
+        for(BaseObject object: objectArray) {
+            FactionDoor factionDoor = (FactionDoor) object;
+            if(factionDoor.getFaction()!=this.getFaction()) {
+                while(this.intersects(object)) {
+                    if(object.equals(this)) {break;}
+                    this.moveX(Math.signum(dirX));
+                }
+            }
+        }
+    }
+    public void resolveCollisionsFactionDoorY(double dirY) {
+        ArrayList<BaseObject> objectArray = ObjectInstanceManager.getInstance().getArrayList(FactionDoor.class,this.getScreen());
+        if(dirY==0){return;}
+        for(BaseObject object: objectArray) {
+            FactionDoor factionDoor = (FactionDoor) object;
+            if(factionDoor.getFaction()!=this.getFaction()) {
+                while (this.intersects(object)) {
+                    if (object.equals(this)) {break;}
+                    this.moveY(Math.signum(dirY));
+                }
+            }
+        }
+    }
 
 
 
