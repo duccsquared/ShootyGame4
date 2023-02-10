@@ -1,9 +1,7 @@
 package game.behaviours;
 
 import game.Global;
-import game.gameScreen.sprites.Character;
-import game.gameScreen.sprites.Entity;
-import game.gameScreen.sprites.NPC;
+import game.gameScreen.sprites.characters.NPC;
 
 public abstract class Behaviour {
     protected NPC npc;

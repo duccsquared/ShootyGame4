@@ -1,4 +1,4 @@
-package game.gameScreen.sprites;
+package game.gameScreen.sprites.characters;
 
 import engine.objects.Sprite;
 import engine.screens.Screen;

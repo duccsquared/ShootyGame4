@@ -1,9 +1,7 @@
-package game.gameScreen.sprites;
+package game.gameScreen.sprites.characters;
 
 import engine.objects.Sprite;
 import engine.screens.Screen;
-import engine.skeleton.App;
-import engine.utils.Key;
 import engine.utils.Mouse;
 import game.Global;
 

@@ -1,8 +1,7 @@
 package game.behaviours;
 
 import game.Global;
-import game.gameScreen.sprites.Entity;
-import game.gameScreen.sprites.NPC;
+import game.gameScreen.sprites.characters.NPC;
 import game.screens.GameScreen;
 
 public class Wander extends Behaviour {

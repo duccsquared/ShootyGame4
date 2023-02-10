@@ -2,9 +2,9 @@ package game.behaviours;
 
 import game.Global;
 import game.gameScreen.sprites.Bullet;
-import game.gameScreen.sprites.Character;
-import game.gameScreen.sprites.NPC;
-import game.gameScreen.sprites.NPCTurret;
+import game.gameScreen.sprites.characters.Character;
+import game.gameScreen.sprites.characters.NPC;
+import game.gameScreen.sprites.characters.NPCTurret;
 
 public class RangedStrafe extends Behaviour {
     private int cooldown = 60;

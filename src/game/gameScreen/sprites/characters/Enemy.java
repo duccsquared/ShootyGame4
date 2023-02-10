@@ -1,9 +1,7 @@
-package game.gameScreen.sprites;
+package game.gameScreen.sprites.characters;
 
-import engine.managers.ObjectInstanceManager;
 import engine.screens.Screen;
 import game.Global;
-import game.behaviours.Behaviour;
 import game.screens.GameScreen;
 
 public abstract class Enemy extends NPC {

@@ -1,11 +1,12 @@
-package game.gameScreen.sprites;
+package game.gameScreen.sprites.characters.enemies;
 
 import engine.screens.Screen;
 import game.Global;
-import game.behaviours.DirectMelee;
 import game.behaviours.IdleAttackInRange;
 import game.behaviours.RangedStrafe;
 import game.behaviours.Wander;
+import game.gameScreen.sprites.characters.Enemy;
+import game.gameScreen.sprites.characters.NPCTurret;
 
 public class Shooter extends Enemy {
     public static final double HALF_SIZE = 14;

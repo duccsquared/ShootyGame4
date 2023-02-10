@@ -1,9 +1,10 @@
-package game.gameScreen.sprites;
+package game.gameScreen.sprites.characters;
 
 import engine.screens.Screen;
 import engine.utils.Key;
 import engine.utils.Mouse;
 import game.Global;
+import game.gameScreen.sprites.Bullet;
 
 public class Player extends Character {
     private int cooldown = 0;

@@ -1,8 +1,8 @@
 package game.behaviours;
 
 import game.Global;
-import game.gameScreen.sprites.Character;
-import game.gameScreen.sprites.NPC;
+import game.gameScreen.sprites.characters.Character;
+import game.gameScreen.sprites.characters.NPC;
 
 public class IdleAttackInRange extends Behaviour {
     private Behaviour subBehaviour;

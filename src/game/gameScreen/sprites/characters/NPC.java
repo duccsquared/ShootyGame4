@@ -1,9 +1,8 @@
-package game.gameScreen.sprites;
+package game.gameScreen.sprites.characters;
 
 import engine.managers.ObjectInstanceManager;
 import engine.screens.Screen;
 import game.Faction;
-import game.Global;
 import game.behaviours.Behaviour;
 
 public class NPC extends Character {

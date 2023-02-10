@@ -1,10 +1,11 @@
-package game.gameScreen.sprites;
+package game.gameScreen.sprites.characters.enemies;
 
 import engine.screens.Screen;
 import game.Global;
 import game.behaviours.DirectMelee;
 import game.behaviours.IdleAttackInRange;
 import game.behaviours.Wander;
+import game.gameScreen.sprites.characters.Enemy;
 
 public class Stabber extends Enemy {
     public static final double HALF_SIZE = 16;

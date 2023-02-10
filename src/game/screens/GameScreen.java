@@ -4,12 +4,15 @@ import engine.managers.ObjectInstanceManager;
 import engine.objects.BaseObject;
 import engine.objects.Text;
 import engine.screens.BaseScreen;
-import engine.utils.Key;
 import engine.utils.Mouse;
 import game.Faction;
 import game.Global;
 import game.gameScreen.FPSCounter;
 import game.gameScreen.sprites.*;
+import game.gameScreen.sprites.characters.Enemy;
+import game.gameScreen.sprites.characters.Player;
+import game.gameScreen.sprites.characters.enemies.Shooter;
+import game.gameScreen.sprites.characters.enemies.Stabber;
 
 import java.util.ArrayList;
 

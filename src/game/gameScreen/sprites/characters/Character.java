@@ -1,10 +1,12 @@
-package game.gameScreen.sprites;
+package game.gameScreen.sprites.characters;
 
 import engine.managers.ObjectInstanceManager;
 import engine.objects.BaseObject;
 import engine.screens.Screen;
 import game.Faction;
 import game.Global;
+import game.gameScreen.sprites.Entity;
+import game.gameScreen.sprites.HPBar;
 
 import java.awt.*;
 import java.util.ArrayList;

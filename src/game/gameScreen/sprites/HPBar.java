@@ -1,7 +1,7 @@
 package game.gameScreen.sprites;
 
 import engine.objects.Sprite;
-import engine.screens.Screen;
+import game.gameScreen.sprites.characters.Character;
 
 public class HPBar {
     private boolean showBar = false;

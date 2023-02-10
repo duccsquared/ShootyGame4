@@ -1,10 +1,10 @@
 package game.gameScreen.sprites;
 
 import engine.objects.BaseObject;
-import engine.objects.Sprite;
 import engine.screens.Screen;
 import game.Faction;
 import game.Global;
+import game.gameScreen.sprites.characters.Character;
 
 public class Bullet extends Entity {
     public static final double HALF_SIZE = 8;

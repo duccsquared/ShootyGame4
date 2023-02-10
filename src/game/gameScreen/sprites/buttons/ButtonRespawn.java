@@ -3,7 +3,7 @@ package game.gameScreen.sprites.buttons;
 import engine.objects.Button;
 import engine.screens.Screen;
 import engine.screens.SubScreen;
-import game.gameScreen.sprites.Player;
+import game.gameScreen.sprites.characters.Player;
 import game.screens.GameScreen;
 
 import java.awt.*;
