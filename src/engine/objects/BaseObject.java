@@ -137,6 +137,7 @@ public abstract class BaseObject {
     public void changeAngle(double angle) {
         this.setAngle(this.getAngle()+angle);
     }
+    public void setDrawHandler(DrawHandler drawHandler) {this.drawHandler = drawHandler;}
     public void setVisible(boolean visible) {this.visible = visible;}
     public void setFixChildrenAngleToParent(boolean fixChildrenAngleToParent) {
         this.fixChildrenAngleToParent = fixChildrenAngleToParent;
@@ -222,6 +223,17 @@ public abstract class BaseObject {
         }
         return null;
     }
+    public ArrayList<BaseObject> findAllIntersecting(Class<? extends BaseObject> cls) {
+        ArrayList<BaseObject> objectArray = ObjectInstanceManager.getInstance().getArrayList(cls,this.getScreen());
+        ArrayList<BaseObject> intersectingList = null;
+        for(BaseObject object: objectArray) {
+            if(this.intersects(object)) {
+                if(intersectingList==null) {intersectingList = new ArrayList<>();}
+                intersectingList.add(object);
+            }
+        }
+        return intersectingList;
+    }
     public void resolveCollisionsX(Class<? extends BaseObject> cls, double dirX) {
         ArrayList<BaseObject> objectArray = ObjectInstanceManager.getInstance().getArrayList(cls,this.getScreen());
         if(dirX==0){return;}
@@ -272,5 +284,10 @@ public abstract class BaseObject {
             drawHandler.paint(g2d,this);
         }
         for(BaseObject child : childList) {child.paint(g2d);}
+    }
+
+    public void moveToFront() {
+        this.getScreen().removeObject(this);
+        this.getScreen().addObject(this);
     }
 }
