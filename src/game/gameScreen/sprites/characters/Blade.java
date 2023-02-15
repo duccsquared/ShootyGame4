@@ -16,12 +16,15 @@ public class Blade extends GameObject {
     private DrawHandler altDrawHandler;
     private double damage;
     private int cooldownTime;
+    private double angularSpeed;
     public Blade(Screen screen, NPC npc, String activatedImgPath, double damage, int cooldown) {
         super(screen, activatedImgPath, npc.x()-32,npc.y()-8,npc.x()+32,npc.y()+8);
         this.npc = npc;
         this.altDrawHandler = new ImageDraw("res/BladesWoodenDeactivated.png",this.width(),this.height());
         this.damage = damage;
         this.cooldownTime = cooldown;
+        this.angularSpeed = Global.randRange(6,10);
+        if(Global.randRange(0,1)==0) {this.angularSpeed *= -1;}
     }
 
     private void swapDrawHandlers() {
