@@ -54,14 +54,14 @@ public class DirectMelee extends Behaviour {
         else if(this.target.getHp()<=0) {
             this.target = null;
         }
-//        else if(npc.intersects(target)) {
-//            target.damage(npc.getContactDamage());
-//            npc.damage(target.getContactDamage());
-//            double dir = Global.coorToDir(npc.x(),npc.y(),target.x(),target.y());
-//            target.addForceDir(dir,10);
-//            npc.addForceDir(dir+180,10);
-//
-//        }
+        else if(npc.intersects(target)) {
+            target.damage(npc.getContactDamage());
+            npc.damage(target.getContactDamage());
+            double dir = Global.coorToDir(npc.x(),npc.y(),target.x(),target.y());
+            target.addForceDir(dir,10);
+            npc.addForceDir(dir+180,10);
+
+        }
         if(this.currentTargetX!=this.targetX || this.currentTargetY!=this.targetY || this.target==null) {
             this.currentTargetX = this.targetX;
             this.currentTargetY = this.targetY;
