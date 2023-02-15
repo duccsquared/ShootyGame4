@@ -30,6 +30,7 @@ public class Blade extends GameObject {
         this.setDrawHandler(temp);
     }
 
+    public boolean isActivated() {return activated;}
     @Override
     public void tick() {
         super.tick();

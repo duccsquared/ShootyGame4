@@ -4,9 +4,7 @@ import engine.objects.BaseObject;
 import engine.objects.Sprite;
 import engine.screens.Screen;
 import game.Global;
-import game.behaviours.DirectMelee;
-import game.behaviours.IdleAttackInRange;
-import game.behaviours.Wander;
+import game.behaviours.*;
 import game.gameScreen.sprites.characters.Blade;
 import game.gameScreen.sprites.characters.Enemy;
 
@@ -21,9 +19,15 @@ public class Stabber extends Enemy {
 
     public Stabber(Screen screen, double x, double y) {
         super(screen, "res/TurretBaseWoodenRed.png", x-HALF_SIZE,y-HALF_SIZE,x+HALF_SIZE,y+HALF_SIZE, 4,WANDER_SPEED,0,5);
-        this.setBehaviour(new IdleAttackInRange(this,new Wander(this),new DirectMelee(this),WANDER_SPEED,ATTACK_SPEED,AGGRO_RANGE,DE_AGGRO_RANGE));
-        this.addChild(new Blade(this.getScreen(),this,"res/BladesWoodenRed.png",1,60));
+        Blade blade = new Blade(this.getScreen(),this,"res/BladesWoodenRed.png",1,60);
+        this.addChild(blade);
         this.addChild(new DummyRect(screen,"res/TurretBaseWoodenRed.png",this));
+        this.setBehaviour(
+                new IdleAttackInRange(
+                        this, new Wander(this),
+                        new BladeAttackAndRetreat(this,new DirectMelee(this),blade),
+                        WANDER_SPEED,ATTACK_SPEED,AGGRO_RANGE,DE_AGGRO_RANGE));
+
     }
 
 }
